@@ -1,0 +1,43 @@
+Table Restaurant {
+  restaurant_id int [pk, increment]
+  name varchar(100) [not null]
+  address varchar(200) [not null]
+  phone varchar(30)
+}
+
+Table Customer {
+  customer_id int [pk, increment]
+  first_name varchar(50) [not null]
+  last_name varchar(50) [not null]
+  email varchar(100) [not null, unique]
+  phone varchar(30)
+}
+
+Table RestaurantTable {
+  table_id int [pk, increment]
+  restaurant_id int [not null]
+  table_number int [not null]
+  capacity int [not null]
+
+  indexes {
+    (restaurant_id, table_number) [unique]
+  }
+}
+
+Table Booking {
+  booking_id int [pk, increment]
+  customer_id int [not null]
+  table_id int [not null]
+  booking_date date [not null]
+  booking_time time [not null]
+  number_of_guests int [not null]
+}
+
+
+// Relationships
+
+Ref: Restaurant.restaurant_id < RestaurantTable.restaurant_id
+
+Ref: Customer.customer_id < Booking.customer_id
+
+Ref: RestaurantTable.table_id < Booking.table_id
