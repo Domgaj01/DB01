@@ -1,0 +1,30 @@
+Restaurant(
+    restaurant_id PK,
+    name,
+    address,
+    phone
+)
+
+Customer(
+    customer_id PK,
+    first_name,
+    last_name,
+    email,
+    phone
+)
+
+RestaurantTable(
+    table_id PK,
+    restaurant_id FK,
+    table_number,
+    capacity
+)
+
+Booking(
+    booking_id PK,
+    customer_id FK,
+    table_id FK,
+    booking_date,
+    booking_time,
+    number_of_guests
+)
